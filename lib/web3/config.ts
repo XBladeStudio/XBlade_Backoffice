@@ -1,16 +1,11 @@
 import { http, createConfig } from "wagmi";
 import { mainnet, sepolia, arbitrum, optimism, base } from "wagmi/chains";
-import { injected, walletConnect, coinbaseWallet } from "wagmi/connectors";
-
-// WalletConnect Project ID - Get from https://cloud.walletconnect.com
-const projectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || "";
+import { injected } from "wagmi/connectors";
 
 export const config = createConfig({
   chains: [mainnet, arbitrum, optimism, base, sepolia],
   connectors: [
     injected(),
-    walletConnect({ projectId }),
-    coinbaseWallet({ appName: "XBlade Admin" }),
   ],
   transports: {
     [mainnet.id]: http(),
